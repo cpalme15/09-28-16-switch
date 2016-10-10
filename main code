@@ -1,0 +1,50 @@
+import java.util.*;
+import java.io.*;
+public class ATMregister {
+
+	public static void main(String[] args) {
+	File f=null;
+	File fw=null;
+    Scanner k = null;
+    PrintWriter fout=null;
+	String	fname="";
+	String	lname= "";
+	double  beforbal=0.0;
+	double afterbal=0.0;
+	char transtype=' ';
+	int amount=0;
+	final double minbal=300;
+	
+		f=new File("transactions.txt");
+		fw =new File("statement.txt");
+		try {
+			k= new Scanner(f);
+			fout=new PrintWriter(fw);
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+			System.exit(0);
+		}
+		while(k.hasNext())
+		{
+		fname=k.next();
+		lname=k.next();
+		beforbal=k.nextDouble();
+		transtype=k.next().charAt(0);
+		amount=k.nextInt();
+		
+
+		
+		fout.println(lname+" "+fname);
+		fout.println("Checking balance before transaction "+ beforbal);
+		fout.println("transaction Type "+transtype);
+		fout.println("Transaction Amount "+amount);
+		fout.println("Checking balance after transaction"+afterbal);
+		fout.println("===================================================");}
+
+		k.close();
+		fout.close();
+		
+	}
+
+}
